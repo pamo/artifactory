@@ -1,5 +1,5 @@
-default['artifactory']['zip_url'] = 'http://dl.bintray.com/content/jfrog/artifactory/jfrog-artifactory-oss-4.6.1.zip'
-default['artifactory']['zip_checksum'] = 'a4cf127698a4fc455e2a186bb95cb607f5cb7681cfb4d693dd2f5aee28666ce0'
+default['artifactory']['zip_url'] = 'https://dl.bintray.com/jfrog/artifactory-pro/org/artifactory/pro/jfrog-artifactory-pro/4.8.0/jfrog-artifactory-pro-4.8.0.zip'
+default['artifactory']['zip_checksum'] = 'ad8bc12329a270ea89e48a406d79d541ee948a15fa572211fea0634467dbfc62'
 default['artifactory']['home'] = '/var/lib/artifactory'
 default['artifactory']['log_dir'] = '/var/log/artifactory'
 default['artifactory']['catalina_base'] = ::File.join(artifactory['home'], 'tomcat')
