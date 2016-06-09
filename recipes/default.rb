@@ -19,6 +19,8 @@ package 'rsync'
 
 user node['artifactory']['user'] do
   home node['artifactory']['home']
+  manage_home true
+  action :create
 end
 
 directory node['artifactory']['home'] do
