@@ -1,21 +1,9 @@
-#
-# Cookbook Name:: artifactory
-# Recipe:: default
-#
-# Copyright (C) 2013 Fewbytes
-#
-# Apache V2
-#
+package 'rsync'
 
 if node['artifactory']['install_java']
   node.set['java']['jdk_version'] = 8
   include_recipe 'java'
 end
-
-include_recipe 'runit'
-package 'unzip'
-# ark requires rsync package
-package 'rsync'
 
 user node['artifactory']['user'] do
   home node['artifactory']['home']
@@ -47,10 +35,20 @@ directory node['artifactory']['log_dir'] do
   mode 00755
 end
 
-ark 'artifactory' do
-  url node['artifactory']['zip_url']
-  checksum node['artifactory']['zip_checksum']
+remote_file "#{Chef::Config[:file_cache_path]}/artifactory-#{node['artifactory']['install']['version']}.rpm" do
+  source node['artifactory']['install']['url']
+  not_if 'rpm -ql artifactory'
+end
+
+rpm_package 'artifactory' do
+  source "#{Chef::Config[:file_cache_path]}/artifactory-#{node['artifactory']['install']['version']}.rpm"
   action :install
+  not_if 'rpm -ql artifactory'
+end
+
+service 'artifactory' do
+  supports start: true, stop: true, restart: true, status: true
+  action [:enable, :start]
 end
 
 link ::File.join(node['artifactory']['home'], 'webapps') do
@@ -67,7 +65,6 @@ end
 
 template '/usr/local/artifactory/tomcat/conf/server.xml' do
   mode 00644
-  notifies :restart, 'runit_service[artifactory]'
+  notifies :restart, 'service[artifactory]'
 end
 
-runit_service 'artifactory'

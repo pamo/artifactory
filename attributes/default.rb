@@ -1,5 +1,6 @@
-default['artifactory']['zip_url'] = 'https://dl.bintray.com/jfrog/artifactory-pro/org/artifactory/pro/jfrog-artifactory-pro/4.8.0/jfrog-artifactory-pro-4.8.0.zip'
-default['artifactory']['zip_checksum'] = 'ad8bc12329a270ea89e48a406d79d541ee948a15fa572211fea0634467dbfc62'
+default['artifactory']['install']['version'] = '4.8.0'
+default['artifactory']['install']['url'] = "https://dl.bintray.com/jfrog/artifactory-pro-rpms/org/artifactory/pro/rpm/jfrog-artifactory-pro/#{node['artifactory_pro']['install']['version']}/jfrog-artifactory-pro-#{node['artifactory_pro']['install']['version']}.rpm"
+
 default['artifactory']['home'] = '/var/opt/jfrog/artifactory'
 default['artifactory']['log_dir'] = '/var/opt/jfrog/artifactory/logs'
 default['artifactory']['catalina_base'] = ::File.join(artifactory['home'], 'tomcat')

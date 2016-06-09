@@ -10,8 +10,6 @@ recipe 'artifactory::default', 'Installs Artifactory Pro.'
 recipe 'artifactory::apache-proxy', 'Setup Apache reverse proxy in front of Artifactory.'
 
 depends          'java'
-depends          'runit'
-depends          'ark'
 depends          'apache2'
 
 supports 'ubuntu'
