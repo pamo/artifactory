@@ -25,4 +25,3 @@ template "#{node['artifactory']['home']}/tomcat/conf/server.xml" do
   mode 00644
   notifies :restart, 'service[artifactory]'
 end
-

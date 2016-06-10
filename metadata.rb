@@ -8,6 +8,7 @@ version          '0.3.4'
 
 recipe 'artifactory::default', 'Installs Artifactory Pro.'
 recipe 'artifactory::apache-proxy', 'Setup Apache reverse proxy in front of Artifactory.'
+recipe 'artifactory::configuration', 'Adds license to artifactory pro'
 
 depends          'java'
 depends          'apache2'
